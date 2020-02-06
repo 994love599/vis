@@ -1,0 +1,154 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<link rel="stylesheet" href="css/comon0.css">
+</head>
+	<script>
+	$(window).load(function(){
+    $(".loading").fadeOut()
+  })  
+  /****/
+  $(document).ready(function(){
+    var whei=$(window).width()
+    $("html").css({fontSize:whei/20})
+    $(window).resize(function(){
+      var whei=$(window).width()
+      $("html").css({fontSize:whei/20})
+    });
+	});
+	</script>
+  <script type="text/javascript" src="js/echarts.min.js"></script>
+  <script type="text/javascript" src="js/vue.min.js"></script>
+	<script language="JavaScript" src="js/js.js"></script> 
+<body>
+<div id="content_main">
+<div class="canvas" style="opacity: .2">
+	<iframe frameborder="0" src="js/index.html" style="width: 100%; height: 100%"></iframe>
+	</div>
+<div class="loading">
+  <div class="loadbox"> <img src="picture/loading.gif"> 页面加载中... </div>
+</div>
+<div class="head">
+  <h1>新型冠状病毒肺炎疫情实时大数据</h1>
+  <div class="weather"><span id="showTime" style="color: aliceblue;"></span></div>
+	<script>
+    function showLocale(objD){
+      var str,colorhead,colorfoot;
+      var yy = objD.getYear();
+      if(yy<1900) yy = yy+1900;
+      var MM = objD.getMonth()+1;
+      if(MM<10) MM = '0' + MM;
+      var dd = objD.getDate();
+      if(dd<10) dd = '0' + dd;
+      var hh = objD.getHours();
+      if(hh<10) hh = '0' + hh;
+      var mm = objD.getMinutes();
+      if(mm<10) mm = '0' + mm;
+      var ss = objD.getSeconds();
+      if(ss<10) ss = '0' + ss;
+      var ww = objD.getDay();
+      if  (ww==0)  ww="星期日";
+      if  (ww==1)  ww="星期一";
+      if  (ww==2)  ww="星期二";
+      if  (ww==3)  ww="星期三";
+      if  (ww==4)  ww="星期四";
+      if  (ww==5)  ww="星期五";
+      if  (ww==6)  ww="星期六";
+      str =  yy + "-" + MM + "-" + dd + " " + hh + ":" + mm + ":" + ss + "  " + ww ;
+      return(str);
+    }
+    function tick(){
+      var today;
+      today = new Date();
+      document.getElementById("showTime").innerHTML = showLocale(today);
+      window.setTimeout("tick()", 1000);
+    }
+    tick();
+  </script>
+</div>
+<div class="mainbox">
+  <ul class="clearfix">
+    <li>
+      <div class="boxall" style="height: 3.2rem">
+        <div class="alltitle">全国疫情重点地区Top10</div>
+        <div class="allnav" id="echart1"></div>
+        <div class="boxfoot"></div>
+      </div>
+      <div class="boxall" style="height: 3.2rem">
+        <div class="alltitle">湖北重点地市分析</div>
+		  	<div class="allnav" id="echart3"></div>
+        <div class="boxfoot"></div>
+      </div>
+      <div class="boxall" style="height: 3.2rem">
+        <div class="alltitle">其他疫情重点国Top10</div>
+        <div class="allnav" id="echart2"></div>
+        <div class="boxfoot">
+			
+		    </div>
+      </div>
+    </li>
+    <li>
+      <div class="bar">
+        <div class="barbox">
+          <ul class="clearfix">
+            <li class="pulll_left counter" id="diagnosed"></li>
+            <li class="pulll_left counter" id="suspect"></li>
+          </ul>
+        </div>
+        <div class="barbox2">
+          <ul class="clearfix">
+            <li class="pulll_left">累计确诊 </li>
+            <li class="pulll_left">累计疑似</li>
+          </ul>
+        </div>
+        <div class="barbox" style="margin-top: 5px;">
+          <ul class="clearfix">
+            <li class="pulll_left counter" id="death"></li>
+            <li class="pulll_left counter" id="cured"></li>
+          </ul>
+        </div>
+        <div class="barbox2">
+          <ul class="clearfix">
+            <li class="pulll_left">累计死亡</li>
+            <li class="pulll_left">累计治愈</li>
+          </ul>
+        </div>
+      </div>
+      <div class="map">
+        <div class="map1"><img src="picture/lbx.png"></div>
+        <div class="map2"><img src="picture/jt.png"></div>
+        <div class="map3"><img src="picture/map.png"></div>
+        <div class="map4" id="map_1" style="margin-top: 0px;"></div>
+      </div>
+    </li>
+    <li>
+      <div class="boxall" style="height:3.4rem">
+        <div class="alltitle">近10天全国疫情累计趋势</div>
+        <div class="allnav" id="echart4"></div>
+        <div class="boxfoot"></div>
+      </div>
+      <div class="boxall" style="height: 3.2rem">
+        <div class="alltitle">新型肺炎实时热门消息推送</div>
+        <div class="allnav" id="echart5" style="overflow:auto">
+        </div>
+        <div class="boxfoot"></div>
+      </div>
+      <div class="boxall" style="height: 3rem">
+        <div class="alltitle" style="color: yellow;">温馨提示</div>
+        <div class="allnav" id="echart6" style="overflow:auto">
+        </div>
+        <div class="boxfoot"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="back"></div>
+</div>
+
+<script type="text/javascript" src="js/china.js"></script> 
+<script type="text/javascript" src="js/area_echarts.js"></script> 
+</body>
+</html>
