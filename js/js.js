@@ -196,7 +196,7 @@ var vm = new Vue({
                 
                 //左侧小导航图标
                 visualMap: {  
-                    show : true,
+                    show : false,
                     calculable: false,
                     calculableColor: 'white',
                     orient: 'vertical',
