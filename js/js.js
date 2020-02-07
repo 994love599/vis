@@ -196,7 +196,7 @@ var vm = new Vue({
                 
                 //左侧小导航图标
                 visualMap: {  
-                    show : false,
+                    show : true,
                     calculable: false,
                     calculableColor: 'white',
                     orient: 'vertical',
@@ -217,7 +217,7 @@ var vm = new Vue({
                 
                 //配置属性
                 series: [{  
-                    name: '数据',  
+                    name: '确诊病例',  
                     type: 'map',  
                     mapType: 'china',   
                     roam: false,
