@@ -130,7 +130,7 @@ var vm = new Vue({
             });
 
 			$.ajax({
-                url: "https://www.tianqiapi.com/api?version=epidemic&appid=23035354&appsecret=8YvlPNrz",
+                url: "https://www.tianqiapi.com/api?version=epidemic&appid=26352188&appsecret=o7cxoPn6",
                 contentType: "application/x-www-form-urlencoded",
                 data: {
                 },
