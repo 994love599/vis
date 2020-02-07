@@ -1,4 +1,4 @@
-﻿$(function () {
+$(function () {
     vm.initPage();				
 })
 
@@ -62,7 +62,6 @@ var vm = new Vue({
                         curesNum: []
                     };
                     for(var i=0;i<r.data.items.length;i++){
-                        
                         //中国近10天
                         if(r.data.items[i].country=='中国'){
                             if(count1<9){
@@ -93,9 +92,9 @@ var vm = new Vue({
                         this_.qushi.China.curesNum.push(China.curesNum[i]);
                     }
                     $("#diagnosed").text(r.data.items[0].confirm);
-                    $("#suspect").text(r.data.items[0].confirm);
+                    $("#suspect").text(r.data.items[0].suspect);
                     $("#death").text(r.data.items[0].dead);
-                    $("#cured").text(r.data.items[0].heal);
+                    $("#cured").text(r.data.items[0].heal); 
                     this_.echarts_2();
                     this_.echarts_4();
                 }
@@ -128,13 +127,14 @@ var vm = new Vue({
                     this_.echarts_3();
                 }
             });
-
+            //https://tianqiapi.com/api?version=epidemic&appid=23035354&appsecret=o7cxoPn6
 			$.ajax({
-                url: "https://www.tianqiapi.com/api?version=epidemic&appid=26352188&appsecret=o7cxoPn6",
+                url: "https://www.tianqiapi.com/api?version=epidemic&appid=26352188&appsecret=o7cxoPn6",//"https://www.tianqiapi.com/api?version=epidemic&appid=26352188&appsecret=o7cxoPn6",
                 contentType: "application/x-www-form-urlencoded",
                 data: {
                 },
                 success: function(r){
+                    //alert(JSON.stringify(r.data.list));
                     this_.total=r.data;
                     //for(var i=9;i>=0;i--){
                         //vm.qushi.date.push(r.data.history[i].date);
@@ -143,6 +143,7 @@ var vm = new Vue({
                         //vm.qushi.deathsNum.push(r.data.history[i].deathsNum);
                         //vm.qushi.curesNum.push(r.data.history[i].curesNum);
                     //}
+                    //alert(JSON.stringify(r.data));
                     for(var i=0;i<r.data.area.length;i++){
                         var md={
                             name: r.data.area[i].provinceShortName,
@@ -157,6 +158,10 @@ var vm = new Vue({
                             vm.provinceData.curesNum.push(r.data.area[i].curedCount);
                         }
                     }
+                    $("#diagnosedIncr").html('&#8593;'+r.data.diagnosedIncr);
+                    $("#suspectIncr").html('&#8593;'+r.data.suspectIncr);
+                    $("#deathIncr").html('&#8593;'+r.data.deathIncr);
+                    $("#curedIncr").html('&#8593;'+r.data.curedIncr); 
                     this_.echarts_1();
                     this_.initMap();
                     /**
@@ -173,7 +178,6 @@ var vm = new Vue({
                     append1+='<li class="alltitle" style="color: white;font-size: 12px;margin-top: 2px;text-align: left;">本系统数据均从网络接口获取,不保证数据绝对的精确性和及时性（本人学习使用，仅供参考）</li>';
                     append1='<ul>'+append1+'</ul>';
                     $("#echart6").html(append1);
-
                 }
             });
         },
@@ -217,7 +221,7 @@ var vm = new Vue({
                 
                 //配置属性
                 series: [{  
-                    name: '确诊病例',  
+                    name: '数据',  
                     type: 'map',  
                     mapType: 'china',   
                     roam: false,
@@ -1060,28 +1064,6 @@ var vm = new Vue({
             window.addEventListener("resize",function(){
                 myChart.resize();
             });
-        }
-
-
-
-
-        
+        }      
 	}
 })
-
-
-		
-		
-		
-
-
-		
-
-
-
-
-
-
-
-
-
